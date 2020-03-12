@@ -57,6 +57,7 @@ class pulp::params {
 
   $ca_cert = '/etc/pki/pulp/ca.crt'
   $ca_key = '/etc/pki/pulp/ca.key'
+  $httpd_service_name = 'httpd'
   $https_cert = $ca_cert
   $https_key = $ca_key
   $https_ca_cert = undef
