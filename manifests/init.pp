@@ -148,7 +148,7 @@
 #   Apache private certificate for ssl
 #
 # @param https_ca_cert
-#   Apache CA certificate for client authentication. Defaults to $ca_cert 
+#   Apache CA certificate for client authentication. Defaults to $ca_cert
 #
 # @param https_chain
 #   apache chain file for ssl
@@ -568,7 +568,10 @@ class pulp (
   contain pulp::config
   contain pulp::database
   contain pulp::service
-  contain pulp::apache
+
+  if $pulp::manage_httpd or $pulp::manage_plugins_httpd {
+    contain pulp::apache
+  }
 
   Class['pulp::install'] -> Class['pulp::config'] -> Class['pulp::database'] ~> Class['pulp::service', 'pulp::apache']
   Class['pulp::config'] ~> Class['pulp::service', 'pulp::apache']
