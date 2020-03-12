@@ -2,14 +2,12 @@
 # @api private
 class pulp::apache {
 
-  if $pulp::manage_httpd or $pulp::manage_plugins_httpd {
-      include apache
-      include apache::mod::proxy
-      include apache::mod::proxy_http
-      include apache::mod::wsgi
-      include apache::mod::ssl
-      include apache::mod::xsendfile
-  }
+  include apache
+  include apache::mod::proxy
+  include apache::mod::proxy_http
+  include apache::mod::wsgi
+  include apache::mod::ssl
+  include apache::mod::xsendfile
 
   # This file is installed by pulp-server but we manage it ourselves.
   # Yum/RPM will restore deleted files on upgrade so we write some dummy value
