@@ -572,10 +572,8 @@ class pulp (
   contain pulp::config
   contain pulp::database
   contain pulp::service
+  contain pulp::apache
 
-  if $pulp::manage_httpd or $pulp::manage_plugins_httpd {
-    contain pulp::apache
-  }
 
   Class['pulp::install'] -> Class['pulp::config'] -> Class['pulp::database'] ~> Class['pulp::service', 'pulp::apache']
   Class['pulp::config'] ~> Class['pulp::service', 'pulp::apache']
